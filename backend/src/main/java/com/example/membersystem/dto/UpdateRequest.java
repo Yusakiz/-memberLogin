@@ -1,6 +1,5 @@
 package com.example.membersystem.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -10,12 +9,7 @@ public class UpdateRequest {
     @Size(max = 50, message = "姓名長度不可超過 50 個字元")
     private String fullName;
 
-    @Email(message = "電子信箱格式不正確")
-    private String email;
-
-    private String phone;
-
-    // Optional: if provided, update password
+    // 可選填：若有填寫才更新密碼
     private String password;
 
     public UpdateRequest() {}
@@ -26,22 +20,6 @@ public class UpdateRequest {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPassword() {

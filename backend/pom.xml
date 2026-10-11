@@ -3,49 +3,59 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1. 繼承 Spring Boot 官方父專案，由它統一管理相依套件版本 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
+
     <groupId>com.example</groupId>
     <artifactId>member-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>member-system</name>
-    <description>Member Management System for Interview</description>
+    <description>Member Management System</description>
 
     <properties>
+        <!-- 採用你電腦目前的 Java 21 -->
         <java.version>21</java.version>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web for RESTful APIs -->
+        <!-- 【Web 開發核心】提供 Spring MVC、RESTful API 與內建 Tomcat 伺服器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Data JPA for Database ORM -->
+        <!-- 【JPA 資料庫存取】Hibernate ORM 框架，讓我們用物件操作資料庫，不用寫死 SQL -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- H2 In-Memory/File Database (Zero installation required) -->
+        <!-- 【H2 內嵌資料庫】免安裝任何 DB 伺服器，直接在專案中執行 -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Validation for Request Body checking -->
+        <!-- 【欄位校驗】提供 @NotBlank, @Email 等格式檢核防呆 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- JJWT for modern stateless authentication -->
+        <!-- 【密碼加密】提供 BCrypt 強度雜湊演算法 -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
+
+        <!-- 【JWT 身分驗證】產生與解析登入憑證 Token -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -64,13 +74,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Password encryption (BCrypt) -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-crypto</artifactId>
-        </dependency>
-
-        <!-- Test starter -->
+        <!-- 【測試套件】單元測試支援 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -80,6 +84,7 @@
 
     <build>
         <plugins>
+            <!-- 打包外掛：將專案打包成可直接 java -jar 執行的獨立 Jar 檔 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

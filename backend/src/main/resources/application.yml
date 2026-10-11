@@ -1,3 +1,4 @@
+# 伺服器通訊埠
 server:
   port: 8080
 
@@ -5,25 +6,26 @@ spring:
   application:
     name: member-system
 
-  # H2 Database Configuration
-  # File-based DB so data is saved across restarts in the backend/data directory
+  # H2 資料庫連線設定
+  # 採用檔案型模式 (./data/memberdb)，資料會持久化保存在後端目錄下的 data 資料夾中
   datasource:
     url: jdbc:h2:file:./data/memberdb;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
     driverClassName: org.h2.Driver
     username: sa
     password: 
 
-  # JPA / Hibernate settings
+  # JPA / Hibernate 設定
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
+      # ddl-auto: update 會根據 Java Entity 類別自動在資料庫建表或更新欄位，免手寫 CREATE TABLE！
       ddl-auto: update
+    # 在終端機印出執行的 SQL 語句，方便開發時觀察與面試除錯
     show-sql: true
     properties:
       hibernate:
         format_sql: true
 
-  # Enable H2 Web Console for easy debugging and demonstration
+  # 開啟 H2 Web Console 網頁圖形化介面 (/h2-console)
   h2:
     console:
       enabled: true
@@ -31,8 +33,9 @@ spring:
       settings:
         web-allow-others: true
 
-# JWT Configuration
+# JWT (JSON Web Token) 設定
 jwt:
-  # Secret key must be at least 256 bits (32 bytes) for HS256
+  # 密鑰 (長度需至少 256 位元，供 HMAC-SHA256 簽名)
   secret: MyInterviewMemberLoginSecretKeyMustBeLongEnough2026!
-  expiration-ms: 86400000 # 24 hours
+  # Token 有效期限：24 小時 (毫秒數 = 86400000)
+  expiration-ms: 86400000

@@ -3,6 +3,9 @@ package com.example.membersystem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Spring Boot 程式主入口
+ */
 @SpringBootApplication
 public class MemberSystemApplication {
 

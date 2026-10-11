@@ -1,5 +1,14 @@
 package com.example.membersystem.dto;
 
+/**
+ * 統一 API 回應封裝物件 (Unified API Response)
+ * 讓所有 API 回傳給前端的 JSON 格式都長得一致：
+ * {
+ *   "success": true/false,
+ *   "message": "說明文字",
+ *   "data": 資料內容
+ * }
+ */
 public class ApiResponse<T> {
     private boolean success;
     private String message;

@@ -1,9 +1,13 @@
 package com.example.membersystem.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+/**
+ * 註冊請求接收物件 (Register Request)
+ * 透過 Bean Validation 註解做第一道防呆檢核
+ */
 public class RegisterRequest {
 
     @NotBlank(message = "會員帳號不得為空")
@@ -12,16 +16,12 @@ public class RegisterRequest {
 
     @NotBlank(message = "會員密碼不得為空")
     @Size(min = 4, max = 50, message = "密碼長度需至少 4 個字元")
+    @Pattern(regexp = "^[A-Za-z0-9_!@#$%^&*()+\\-=\\[\\]{};':\",.<>/?]+$", message = "密碼僅能使用英文字母、數字與常用符號，不可輸入中文")
     private String password;
 
     @NotBlank(message = "會員姓名不得為空")
     @Size(max = 50, message = "姓名長度不可超過 50 個字元")
     private String fullName;
-
-    @Email(message = "電子信箱格式不正確")
-    private String email;
-
-    private String phone;
 
     public RegisterRequest() {}
 
@@ -47,21 +47,5 @@ public class RegisterRequest {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 }

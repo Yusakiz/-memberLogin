@@ -3,24 +3,25 @@ package com.example.membersystem.dto;
 import com.example.membersystem.entity.Member;
 import java.time.LocalDateTime;
 
+/**
+ * 回傳給前端展示的會員資訊
+ * 注意：這裡【故意不包含 password 欄位】，確保密碼永遠不會回傳給前端！
+ */
 public class MemberResponse {
     private Long id;
     private String username;
     private String fullName;
-    private String email;
-    private String phone;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public MemberResponse() {}
 
+    // 靜態工廠方法：將資料庫 Entity 轉換為安全的 Response DTO
     public static MemberResponse fromEntity(Member member) {
         MemberResponse res = new MemberResponse();
         res.setId(member.getId());
         res.setUsername(member.getUsername());
         res.setFullName(member.getFullName());
-        res.setEmail(member.getEmail());
-        res.setPhone(member.getPhone());
         res.setCreatedAt(member.getCreatedAt());
         res.setUpdatedAt(member.getUpdatedAt());
         return res;
@@ -48,22 +49,6 @@ public class MemberResponse {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public LocalDateTime getCreatedAt() {
