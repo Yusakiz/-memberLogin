@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: member-system
+
+  # H2 Database Configuration
+  # File-based DB so data is saved across restarts in the backend/data directory
+  datasource:
+    url: jdbc:h2:file:./data/memberdb;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+
+  # JPA / Hibernate settings
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Enable H2 Web Console for easy debugging and demonstration
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+# JWT Configuration
+jwt:
+  # Secret key must be at least 256 bits (32 bytes) for HS256
+  secret: MyInterviewMemberLoginSecretKeyMustBeLongEnough2026!
+  expiration-ms: 86400000 # 24 hours
