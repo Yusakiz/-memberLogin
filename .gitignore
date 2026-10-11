@@ -7,9 +7,11 @@ target/
 *.war
 
 # Database files
+data/
 backend/data/
 *.mv.db
 *.trace.db
+*.lock.db
 
 # Node & Vue
 node_modules/
