@@ -144,12 +144,7 @@ async function handleDelete() {
           <tbody>
             <tr v-for="item in searchResults" :key="item.id">
               <td><strong>#{{ item.id }}</strong></td>
-              <td>
-                {{ item.username }}
-                <span v-if="item.id === member.id" style="color: #16a34a; font-size: 0.75rem; font-weight: bold; margin-left: 4px;">
-                  (本人)
-                </span>
-              </td>
+              <td>{{ item.username }}</td>
               <td>{{ item.fullName }}</td>
               <td style="font-size: 0.85rem; color: #64748b;">
                 {{ new Date(item.createdAt).toLocaleDateString('zh-TW') }}
